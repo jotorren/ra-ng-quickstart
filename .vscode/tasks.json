@@ -1,0 +1,42 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "0.1.0",
+    "command": "cmd",
+    "args": ["/C"],
+    "isShellCommand": true,
+    "tasks": [
+        {
+            "taskName": "Compile Type Script",
+            "suppressTaskName": true,
+            "args": ["tsc", "-w", "-p", "."],
+            "showOutput": "always",
+            "isBuildCommand": true,
+            "isWatching": true,
+            "problemMatcher": "$tsc-watch"           
+        },
+        {
+            "taskName": "Lint Type Script",
+            "suppressTaskName": true,
+            "args": ["tslint", "-c", "tslint.json", "src/app/**/*.ts"],
+            "showOutput": "always",
+            "isBuildCommand": true,
+            "isWatching": false
+        },
+        {
+            "taskName": "Test with Node.js",
+            "suppressTaskName": true,
+            "args": ["runts ${fileDirname} ${fileBasename}"],
+            "showOutput": "always",
+            "isBuildCommand": false,
+            "isWatching": false
+        },                
+        {
+            "taskName": "View In Chrome",
+            "suppressTaskName": true,
+            "args": ["start chrome", "${file}"],
+            "isBuildCommand": false,
+            "isWatching": false
+        }
+    ]
+}

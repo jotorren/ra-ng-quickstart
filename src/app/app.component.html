@@ -1,0 +1,15 @@
+<div id="app-main-window" class="container panel panel-primary panel-root panel-body" >
+    <app-header [title]='appName+" "+appVersion'></app-header>
+    <app-topnav></app-topnav>
+    <app-messages [messages]='notifications' (onClear)="onClear($event)"></app-messages>
+
+    <app-sidebar></app-sidebar>
+    <main>
+        <section id="content">
+            <router-outlet></router-outlet>
+        </section>
+    </main> 
+    <app-aside></app-aside>
+
+    <app-footer></app-footer>
+</div>

@@ -1,0 +1,20 @@
+:host /deep/ .logout-button { 
+    float: right;
+}
+
+:host /deep/ .logout-link { 
+    float: right;
+}
+
+:host /deep/ .logout-custom { 
+    background:url(../src/resources/img/logout.png) left top; 
+    width:32px; 
+    height:32px;
+    display: block;
+    cursor: pointer;
+    margin-left: 10px;
+    /*margin-left: auto;
+    margin-right: auto;
+    float: none;    */
+    float: right;
+}

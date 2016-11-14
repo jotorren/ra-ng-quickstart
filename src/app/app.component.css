@@ -1,0 +1,27 @@
+.panel-root {
+    margin-top:10px;
+}   
+header {
+    text-align: left;
+}
+#messages{
+    margin-bottom: 10px;
+}   
+#sidebar{
+    float: left;
+    width: 20%;
+}
+main {
+    float: left;
+    width: 55%;
+    text-align: center;
+}
+aside {
+    float: left;
+    width: 25%;
+}
+footer {
+    clear: both;
+    text-align: center;
+    font-size: 12px;
+}

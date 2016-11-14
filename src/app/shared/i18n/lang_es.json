@@ -1,0 +1,15 @@
+{
+    "serviceName": "i18n_es",
+    "config": {
+        "log.rang.conf.error": "[{{class}}] Error de configuración de raNgular2 <{{detail}}>",
+		
+        "log.cache.creation": "[{{class}}] Creada la cache [{{name}}]",
+        "log.cache.not.defined": "[{{class}}] No se ha definido ninguna cache. Por favor revise la configuración",
+        "log.cache.expired.entry": "[{{class}}] La entrada ha expirado: {{key}} / {{value}}",
+
+        "log.app.init.cache": "[{{class}}] Usando cache: {{name}}",
+		
+        "ui.language.selector.label": "Seleccione idioma:",
+        "ui.main.message": "Zona principal de contenido"
+    }
+}

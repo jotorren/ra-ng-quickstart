@@ -1,0 +1,32 @@
+{
+    "serviceName": "cache",
+    "config": [
+        {
+            "name": "application",
+            "options": {
+                "maxAge": 3600000,
+                "deleteOnExpire": "aggressive",
+                "recycleFreq": 60000,
+                "storageMode": "localStorage"
+            }
+        },
+        {
+            "name": "session",
+            "options": {
+                "maxAge": 3600000,
+                "deleteOnExpire": "aggressive",
+                "recycleFreq": 60000,
+                "storageMode": "sessionStorage"
+            }
+        },
+        {
+            "name": "memory",
+            "options": {
+                "maxAge": 3600000,
+                "deleteOnExpire": "aggressive",
+                "recycleFreq": 60000,
+                "storageMode": "memory"
+            }
+        }
+    ]
+}

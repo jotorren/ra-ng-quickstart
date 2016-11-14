@@ -1,0 +1,51 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Attach to Node.js",
+            "type": "node",
+            "request": "attach",
+            "port": 5858,
+            "address": "localhost",
+            "restart": false,
+            "sourceMaps": false,
+            "outDir": null,
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": null
+        },
+        {
+            "name": "index.html on Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${workspaceRoot}/src/index.html"
+        },
+        {
+            "name": "Main on Chrome",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:3000/index.html",
+            "sourceMaps": true,
+            "webRoot": "${workspaceRoot}"
+        },
+        {
+            "name": "Attach to Chrome",
+            "type": "chrome",
+            "request": "attach",
+            "port": 9222
+        },
+        {
+            "name": "Jasmine on Node.js",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/jasmine-node/bin/jasmine-node",
+            "stopOnEntry": false,
+            "args": [
+                "src",
+                "--verbose"
+            ],
+            "cwd": "${workspaceRoot}",
+            "sourceMaps": true,
+            "outDir": "${workspaceRoot}/src"
+        }
+    ]
+}
