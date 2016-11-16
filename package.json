@@ -21,7 +21,7 @@
   "author": "ICT Analysis, Architecture & Design",
   "license": "Apache-2.0",
   "dependencies": {
-    "ra-ng": "2.0.0-rc14",
+    "ra-ng": "2.0.0-rc15",
     "@angular/common": "2.1.2",
     "@angular/compiler": "2.1.2",
     "@angular/core": "2.1.2",
@@ -33,6 +33,7 @@
     "@angular/upgrade": "2.1.2",
     "angular2-in-memory-web-api": "0.0.21",
     "angular2-jwt": "0.1.25",
+    "angular2-uuid": "^1.1.0",
     "bootstrap": "^3.3.7",
     "cachefactory": "1.5.1",
     "core-js": "^2.4.1",

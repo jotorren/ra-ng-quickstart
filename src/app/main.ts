@@ -7,7 +7,7 @@ import { Config } from './shared';
 import { AppModule } from './app.module';
 
 // enableProdMode();
-ConfigurationLoaderService.bootstrap(Config).subscribe(
+ConfigurationLoaderService.bootstrap(location.hostname, Config).subscribe(
   (loaded) => {
     LoggerFactory.configure(Config);
     const LOG: Logger = LoggerFactory.getLogger('root');

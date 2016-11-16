@@ -25,6 +25,7 @@
 
     // other libraries
     'rxjs': 'npm:rxjs',
+    'angular2-uuid': 'npm:angular2-uuid',
     'primeng': 'npm:primeng',
     'log4javascript': 'npm:log4javascript',
     'cachefactory': 'npm:cachefactory/dist',
@@ -38,6 +39,7 @@
   var packages = {
     'app': { main: 'main.js', defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
+    'angular2-uuid': { main: 'index.js', defaultExtension: 'js' },
     'primeng': { defaultExtension: 'js' },
     'log4javascript': { main: 'log4javascript.js', defaultExtension: 'js' },
     'cachefactory': { main: 'cachefactory.js', defaultExtension: 'js' },
