@@ -44,6 +44,8 @@ export class AppComponent implements OnDestroy, OnInit {
       this.translate.use(Config.appLang);
     }
 
+    this.log.info(this.appName);
+
     // this.log.debug(this.translate.instant('log.app.init.cache', {
     //   class: this.className, name: this.cacheService.get('application').$$id
     // }));

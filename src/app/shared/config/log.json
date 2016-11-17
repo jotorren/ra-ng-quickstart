@@ -29,6 +29,21 @@
             "appenders": [
                 "BrowserConsoleAppender"
             ]
+        },
+        {
+            "name": "remote",
+            "level": "DEBUG",
+            "layout": {
+                "type": "JsonLayout"
+            },
+            "additivity": false,
+            "appenders": ["AjaxAppenderBatch"],
+            "ajax":{
+                "endpoint": "http://localhost:8003/api/log",
+                "withCredentials": false,
+                "batchSize": "5",
+                "timerInterval": 10000
+            }
         }
     ]
 }
