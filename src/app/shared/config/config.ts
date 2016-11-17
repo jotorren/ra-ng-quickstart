@@ -1,6 +1,5 @@
 export let Config = {
     import: [
-        'app/shared/config/log.json',
         'app/shared/config/cache.json',
         'app/shared/i18n/lang_en.json',
         'app/shared/i18n/lang_es.json'
