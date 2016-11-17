@@ -1,6 +1,6 @@
 {
   "name": "ra-ng-qs",
-  "version": "2.0.0-rc14",
+  "version": "2.0.0-rc16",
   "description": "ra-ng project quickstart",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -21,16 +21,16 @@
   "author": "ICT Analysis, Architecture & Design",
   "license": "Apache-2.0",
   "dependencies": {
-    "ra-ng": "2.0.0-rc15",
-    "@angular/common": "2.1.2",
-    "@angular/compiler": "2.1.2",
-    "@angular/core": "2.1.2",
-    "@angular/forms": "2.1.2",
-    "@angular/http": "2.1.2",
-    "@angular/platform-browser": "2.1.2",
-    "@angular/platform-browser-dynamic": "2.1.2",
-    "@angular/router": "3.1.2",
-    "@angular/upgrade": "2.1.2",
+    "ra-ng": "2.0.0-rc16",
+    "@angular/common": "2.2.0",
+    "@angular/compiler": "2.2.0",
+    "@angular/core": "2.2.0",
+    "@angular/forms": "2.2.0",
+    "@angular/http": "2.2.0",
+    "@angular/platform-browser": "2.2.0",
+    "@angular/platform-browser-dynamic": "2.2.0",
+    "@angular/router": "3.2.0",
+    "@angular/upgrade": "2.2.0",
     "angular2-in-memory-web-api": "0.0.21",
     "angular2-jwt": "0.1.25",
     "angular2-uuid": "^1.1.0",
@@ -38,7 +38,7 @@
     "cachefactory": "1.5.1",
     "core-js": "^2.4.1",
     "crypto-js": "^3.1.8",
-    "lodash": "^4.16.6",
+    "lodash": "^4.17.2",
     "log4javascript": "^1.4.15",
     "ng2-translate": "3.1.2",
     "primeng": "^1.0.0-rc.4",
@@ -50,9 +50,9 @@
     "zone.js": "^0.6.26"
   },
   "devDependencies": {
-    "typescript": "^2.0.9",
+    "typescript": "^2.0.10",
     "tslint": "3.15.1",
-    "codelyzer": "~1.0.0-beta.3",
+    "codelyzer": "~1.0.0-beta.4",
     
     "concurrently": "^3.1.0",
     "ts-node": "1.7.0",
@@ -78,11 +78,11 @@
     "@types/cachefactory": "^1.4.4",
     "@types/core-js": "^0.9.34",
     "@types/crypto-js": "^3.1.32",
-    "@types/jasmine": "^2.5.37",
+    "@types/jasmine": "^2.5.38",
     "@types/selenium-webdriver": "^2.53.32",
-    "@types/lodash": "^4.14.38",
+    "@types/lodash": "^4.14.39",
     "@types/log4javascript": "^1.4.31",
-    "@types/node": "^6.0.46",
-    "@types/quill": "0.0.27"
+    "@types/node": "^6.0.48",
+    "@types/quill": "0.0.28"
   }
 }
