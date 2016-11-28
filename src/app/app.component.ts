@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs/Rx';
 
 import {
     LogService, TranslateService, CacheService, EventBusService, BroadcastEvent,
-    BroadcastMessageType, Message
+    BroadcastMessageType, Message, ClearMessagesEventType
 } from 'ra-ng';
 
 import { Constants, Config } from './shared';
@@ -72,7 +72,7 @@ export class AppComponent implements OnDestroy, OnInit {
   }
 
   onClear(event: BroadcastEvent) {
-    if ('clear' === event.type && 'MessagesComponent' === event.source) {
+    if (ClearMessagesEventType === event.type && 'MessagesComponent' === event.source) {
       this.notifications = [];
     }
   }
