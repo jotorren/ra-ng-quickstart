@@ -16,10 +16,15 @@ import {
                 new CacheService(cfgService, log, 'memory', 'application'),
             deps: [ConfigurationService, LogI18nService]
         },
-        EventBusService, UserContextService, SpinnerService]
+        EventBusService,
+        {
+            provide: UserContextService, useClass: UserContextService,
+            deps: [ConfigurationService]
+        },
+        SpinnerService]
 })
 export class CoreModule {
-    constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
+    constructor( @Optional() @SkipSelf() parentModule: CoreModule) {
         throwIfAlreadyLoaded(parentModule, 'CoreModule');
     }
 }

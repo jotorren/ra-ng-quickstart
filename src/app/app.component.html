@@ -1,7 +1,7 @@
 <div id="app-main-window" class="container panel panel-primary panel-root panel-body" >
     <app-header [title]='appName+" "+appVersion'></app-header>
     <app-topnav></app-topnav>
-    <app-messages [messages]='notifications' (onClear)="onClear($event)"></app-messages>
+    <rang-messages [messages]='notifications' (onClear)="onClear($event)"></rang-messages>
 
     <app-sidebar></app-sidebar>
     <main>

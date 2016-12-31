@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   template: `
 <aside id="aside">
     <div class="panel panel-default panel-info">
-        <app-lang-selector></app-lang-selector>
+        <rang-lang-selector></rang-lang-selector>
     </div>
 </aside>  
 `,

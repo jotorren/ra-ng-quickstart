@@ -18,36 +18,27 @@
     '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
     '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
     '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-    '@angular/upgrade': 'npm:@angular/upgrade/bundles/upgrade.umd.js',
 
     // ra-ng
-    'ra-ng': 'npm:ra-ng/dist',
+    'ra-ng': 'npm:ra-ng/dist/bundles/ra-ng.umd.js',
 
     // other libraries
+    'ng2-translate/ng2-translate': 'npm:ng2-translate/bundles/ng2-translate.umd.js',
+    'log4javascript': 'npm:log4javascript/log4javascript.js',
+    'cachefactory': 'npm:cachefactory/dist/cachefactory.js',
+    'lodash': 'npm:lodash/lodash.js',
+
     'rxjs': 'npm:rxjs',
-    'angular2-uuid': 'npm:angular2-uuid',
-    'primeng': 'npm:primeng',
-    'log4javascript': 'npm:log4javascript',
-    'cachefactory': 'npm:cachefactory/dist',
-    'ng2-translate': 'npm:ng2-translate/bundles',
-    'angular2-jwt': 'npm:angular2-jwt',
     'crypto-js': 'npm:crypto-js',
-    'lodash': 'npm:lodash'
+    'primeng': 'npm:primeng'
   };
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
     'app': { main: 'main.js', defaultExtension: 'js' },
     'rxjs': { defaultExtension: 'js' },
-    'angular2-uuid': { main: 'index.js', defaultExtension: 'js' },
-    'primeng': { defaultExtension: 'js' },
-    'log4javascript': { main: 'log4javascript.js', defaultExtension: 'js' },
-    'cachefactory': { main: 'cachefactory.js', defaultExtension: 'js' },
-    'ng2-translate': { main: 'ng2-translate.umd.js', defaultExtension: 'js' },
-    'angular2-jwt': { main: 'angular2-jwt.js', defaultExtension: 'js' },
     'crypto-js': { main: 'index.js', defaultExtension: 'js', format: 'cjs' },
-    'lodash': { main: 'lodash.js', defaultExtension: 'js' },
-    'ra-ng': { main: 'index.js', defaultExtension: 'js' },
+    'primeng': { defaultExtension: 'js' }
   };
 
   var appPackageNames = [
