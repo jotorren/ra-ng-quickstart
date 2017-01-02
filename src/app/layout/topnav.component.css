@@ -7,7 +7,7 @@
 }
 
 :host /deep/ .logout-custom { 
-    background:url(../src/resources/img/logout.png) left top; 
+    background:url(../src/assets/img/logout.png) left top; 
     width:32px; 
     height:32px;
     display: block;
