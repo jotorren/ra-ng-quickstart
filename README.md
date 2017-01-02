@@ -4,19 +4,17 @@
 
 # ra-ng Quickstart
 
-This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast. 
-Using Protractor for our end-to-end story and Karma for our unit tests.
+This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast.
 * Best practices in file and application organization for Angular 2.
-* A great Angular 2 seed repo for anyone who wants to start their project.
 * Testing Angular 2 code with Jasmine and Karma.
 * Coverage with Istanbul and Karma
 * End-to-end Angular 2 code using Protractor.
 * Type manager with @types
-* Rich UI Design with [primeNG](http://www.primefaces.org/primeng/)
+* Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
 
 ### Quick start
 ```bash
-# clone our repo
+# clone this repo
 # --depth 1 removes all but one .git commit history
 
 git clone --depth 1 https://github.com/jotorren/ra-ng-quickstart.git my-project
@@ -43,7 +41,7 @@ go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http
 * [License](#license)
 
 # File Structure
-We use the component approach in our starter. This is the new standard for developing Angular apps and a great way to ensure 
+This starter uses the component approach. This is the new standard for developing Angular apps and a great way to ensure 
 maintainable code by encapsulation of our behavior logic. A component is basically a self contained app usually in a single 
 file or a folder with each concern as a file: style, template, specs, e2e, and component class. Here's how it looks:
 ```
