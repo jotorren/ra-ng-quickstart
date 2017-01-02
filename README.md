@@ -127,6 +127,6 @@ I'll accept pretty much everything so feel free to open a Pull-Request
 
 # License
 
-Code licensed under an [Apache License](https://github.com/jotorren/ra-ng/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
+Code licensed under an [Apache License](https://github.com/jotorren/ra-ng-quickstart/blob/master/LICENSE). Documentation licensed under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/).
 
 **[Back to top](#table-of-contents)**
