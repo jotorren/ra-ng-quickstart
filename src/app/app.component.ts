@@ -21,8 +21,6 @@ import { Constants, Config } from './shared';
   encapsulation: ViewEncapsulation.None // the style is not scoped, therefore it will be globally applied
 })
 export class AppComponent implements OnDestroy, OnInit {
-  // private className = this.constructor.name;
-
   appName = Constants.appName;
   appVersion = Constants.appVersion;
   appLang = Config.appLang;
@@ -30,6 +28,8 @@ export class AppComponent implements OnDestroy, OnInit {
   notifications: Message[] = [];
 
   private busSubs: Subscription;
+  // private className = this.constructor.name;
+  private className = 'AppComponent';
 
   constructor(
     private log: LogService,

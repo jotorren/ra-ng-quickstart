@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
   styleUrls: ['topnav.component.css']
 })
 export class TopnavComponent {
-  private className = this.constructor.name;
-
-  constructor() {}
+  // private className = this.constructor.name;
+  private className = 'TopnavComponent';
 }

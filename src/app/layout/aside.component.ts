@@ -13,7 +13,4 @@ import { Component } from '@angular/core';
   styleUrls: ['aside.component.css']
 })
 export class AsideComponent {
-  private className = this.constructor.name;
-
-  constructor() {}
 }

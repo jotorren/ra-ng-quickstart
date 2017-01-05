@@ -15,7 +15,6 @@ import { Component } from '@angular/core';
   styleUrls: ['sidebar.component.css']
 })
 export class SidebarComponent {
-  private className = this.constructor.name;
-
-  constructor() {}
+  // private className = this.constructor.name;
+  private className = 'SidebarComponent';
 }
