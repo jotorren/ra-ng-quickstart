@@ -160,8 +160,8 @@ ConfigurationLoaderService.bootstrap(selector, Config).subscribe(
 ```
 
 For example, if we navigate to `http://localhost:3000`, the configuration service will try to load the properties set
-in `src/environments/localhost.json`, but if we go to `http://myserver:80` (suposing the application is published on
-that web server), now the configuration service will look for the `src/environments/myserver.json` file.
+in `environments/localhost.json`, but if we go to `http://myserver:80` (suposing the application is published on
+that web server), now the configuration service will look for the `environments/myserver.json` file.
 
 # Building
 Default gulp task is for releasing: it does not generate source maps, **inlines** all external template/style files used by any angular component and includes minification.
