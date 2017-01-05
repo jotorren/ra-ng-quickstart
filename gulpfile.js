@@ -67,7 +67,7 @@ gulp.task('gen:assets', function() {
             'node_modules/zone.js/dist/zone.min.js',
             'node_modules/reflect-metadata/Reflect.js',
             'node_modules/quill/dist/quill.min.js'
-        ]).pipe(concat('vendors.js')).pipe(uglify()).pipe(gulp.dest('dist/public/assets/js')),
+        ]).pipe(concat('globals.js')).pipe(uglify()).pipe(gulp.dest('dist/public/assets/js')),
 
         gulp.src('src/*.ico').pipe(gulp.dest('dist/public')),
         gulp.src('src/index-public.html').pipe(rename('index.html')).pipe(gulp.dest('dist/public')),
