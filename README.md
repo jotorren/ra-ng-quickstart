@@ -39,6 +39,8 @@ go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http
 
 # Table of Contents
 * [File Structure](#file-structure)
+* [Bootstrap](#bootstrap)
+* [Building](#building)
 * [Contributors](#contributors)
 * [Support, Questions, or Feedback](#support-questions-or-feedback)
 * [License](#license)
@@ -57,6 +59,9 @@ my-project/
  ├──src/
  │   ├──api/
  │   ├──environments/
+ │   │   ├──localhost.json
+ │   │   ├──environment.ts
+ │   │   └──environment.prod.ts
  │   ├──app/
  │   │   ├──core/
  │   │   │   ├──core.module.ts
@@ -115,6 +120,100 @@ my-project/
  ├──tslint.json
  └──typings.json
  ```
+
+# Bootstrap
+Before starting the Angular 2 application, the configuration service also loads a set of properties that depend on the 
+**runtime** environment, which is identified using the **hostname**. Doing so, we can use the same artifact on different
+environments without having to rebuild it.
+
+Keep in mind that properties read from the environment always overwrite any potential value defined in the static **Config** 
+object literal.
+
+```ts
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+
+import { ConfigurationLoaderService, LoggerFactory, Logger } from 'ra-ng';
+
+import { Config, environment } from './shared';
+import { AppModule } from './app.module';
+
+let selector = location.hostname;
+
+if (environment.production) {
+  enableProdMode();
+}
+
+ConfigurationLoaderService.bootstrap(selector, Config).subscribe(
+  (loaded) => {
+    LoggerFactory.configure(Config);
+    const LOG: Logger = LoggerFactory.getLogger('root');
+
+    LOG.info('Imported JSON configuration for modules: ' + loaded);
+
+    // Compile and launch the module
+    platformBrowserDynamic().bootstrapModule(AppModule);
+  },
+  (err) => {
+    console.error('Error loading configuration before launching Angular 2 bootstrap: ', err);
+  });
+```
+
+For example, if we navigate to `http://localhost:3000`, the configuration service will try to load the properties set
+in `src/environments/localhost.json`, but if we go to `http://myserver:80` (suposing the application is published on
+that web server), now the configuration service will look for the `src/environments/myserver.json` file.
+
+# Building
+Default gulp task is for releasing: it does not generate source maps, **inlines** all external template/style files used by any angular component and includes minification.
+
+```
+dist/
+ ├──src/                        * folder containing all compiled javascript files
+ └──public/
+     ├──environments/           * runtime configuration json files
+     ├──app/                    * i18n and static configuration json files
+     ├──assets/                 * static resources (images, fonts, css, js...)
+     │   ├──css/                
+     │   ├──font-awesome-4.6.3/                
+     │   ├──img/                
+     │   └──js/                 
+     │       ├──globals.js      * minified bundle including javascript files that we need to have globally available: polyfills, zone and reflect-metadata
+     │       └──app.js          * minified bundle that is independent of the SystemJS loader entirely. It includes the app code and its dependencies: @angular, ra-ng...
+     │
+     ├──favicon.ico
+     └──index.html              * Application entry point                 
+```
+
+If we look at the `index.html` content:
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <base href='/' >
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+        <title>ra-ng quickstart</title>
+
+        <link rel="stylesheet" type="text/css" href="./assets/font-awesome-4.6.3/css/font-awesome.min.css" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/primeui-redmond-theme.css" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/primeui-ng-all.min.css" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/quill.snow.css" />
+        <link rel="stylesheet" type="text/css" href="./assets/css/quill.bubble.css" />
+
+        <!-- 1. Load libraries -->
+        <script src="./assets/js/globals.js"></script>
+        <!-- 2. Load the application and its dependencies -->  
+        <script src="./assets/js/app.js"></script>
+	</head>
+  
+  <!-- 3. Display the application -->
+  <body>
+    <app-qs>Loading...</app-qs>
+  </body>   
+</html>
+```
 
 # Contributors
 
