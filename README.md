@@ -102,6 +102,7 @@ my-project/
  |   ├──index.html
  |   └──systemjs.config.js
  │   
+ ├──gulpfile.js
  ├──karma.conf.js
  ├──karma-systemjs.js
  ├──karma-test-shim.js
