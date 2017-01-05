@@ -11,7 +11,9 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * End-to-end Angular 2 code using Protractor.
 * Type manager with @types
 * Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
-* Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng) 
+* Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng)
+* Fully configured SystemJS module loader.
+* Ready to go build system using gulp and SystemJS Builder.
 
 ### Quick start
 ```bash
