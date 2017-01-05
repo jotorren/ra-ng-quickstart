@@ -82,6 +82,7 @@ my-project/
  │   │   │   │   └──lang_es.json
  │   │   │   │
  │   │   │   ├──constants.ts
+ │   │   │   ├──environment.ts
  │   │   │   ├──index.ts
  │   │   │   └──shared.module.ts
  │   │   │
