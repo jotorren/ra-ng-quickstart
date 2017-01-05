@@ -1,14 +1,17 @@
-// import { enableProdMode } from '@angular/core';
+import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { ConfigurationLoaderService, LoggerFactory, Logger } from 'ra-ng';
 
-import { Config } from './shared';
+import { Config, environment } from './shared';
 import { AppModule } from './app.module';
 
 let selector = location.hostname;
 
-// enableProdMode();
+if (environment.production) {
+  enableProdMode();
+}
+
 ConfigurationLoaderService.bootstrap(selector, Config).subscribe(
   (loaded) => {
     LoggerFactory.configure(Config);

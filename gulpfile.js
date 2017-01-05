@@ -15,7 +15,7 @@ var sysBuilder = require('systemjs-builder');
 var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('default', function(callback) {
-  runSequence('compile:ts', 'clean:public', 'gen:assets', 'bundle:js', callback);
+  runSequence('environment:prod', 'compile:ts', 'clean:public', 'gen:assets', 'bundle:js', 'environment:dev', callback);
 });
 
 gulp.task('clean:dist', function() {
@@ -28,9 +28,23 @@ gulp.task('clean:public', function() {
 
 gulp.task('clean', ['clean:public', 'clean:dist']);
 
+gulp.task('environment:prod', function() {
+
+    return gulp.src('src/environments/environment.prod.ts')
+        .pipe(rename('environment.ts'))
+        .pipe(gulp.dest('src/app/shared'));
+});
+
+gulp.task('environment:dev', function() {
+
+    return gulp.src('src/environments/environment.ts')
+        .pipe(gulp.dest('src/app/shared'));
+});
+
 // Compile TypeScript to JS
 gulp.task('compile:ts', ['clean:dist'], function() {
-    return gulp.src("src/**/*.ts")
+
+    return gulp.src("src/app/**/*.ts")
         //.pipe(sourcemaps.init())
         .pipe(inlineNg2Template({
             base: '/src/app',
@@ -44,7 +58,7 @@ gulp.task('compile:ts', ['clean:dist'], function() {
         .pipe(replace('moduleId: module.id,', ''))
         .pipe(tsProject())
         //.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/src'));
+        .pipe(gulp.dest('dist/src/app'));
 });
 
 gulp.task('gen:assets', function() {
