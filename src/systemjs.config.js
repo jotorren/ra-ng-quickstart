@@ -20,7 +20,7 @@
     '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
     // ra-ng
-    'ra-ng': 'npm:ra-ng/dist/bundles/ra-ng.umd.js',
+    'ra-ng': 'npm:ra-ng/bundles/ra-ng.umd.js',
 
     // other libraries
     'ng2-translate/ng2-translate': 'npm:ng2-translate/bundles/ng2-translate.umd.js',

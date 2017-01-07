@@ -1,6 +1,6 @@
 {
   "name": "ra-ng-qs",
-  "version": "2.0.0-rc23",
+  "version": "2.0.0-rc24",
   "description": "ra-ng project quickstart",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
@@ -21,7 +21,7 @@
   "author": "ICT Analysis, Architecture & Design",
   "license": "Apache-2.0",
   "dependencies": {
-    "ra-ng": "2.0.0-rc23",
+    "ra-ng": "2.0.0-rc24",
     "@angular/common": "^2.4.1",
     "@angular/compiler": "^2.4.1",
     "@angular/core": "^2.4.1",
