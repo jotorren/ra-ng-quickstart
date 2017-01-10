@@ -37,12 +37,12 @@
     "lodash": "^4.17.4",
     "log4javascript": "^1.4.15",
     "ng2-translate": "^5.0.0",
-    "primeng": "^1.1.3",
-    "rxjs": "^5.0.2"
+    "primeng": "^1.1.4",
+    "rxjs": "^5.0.3"
   },
   "devDependencies": {
     "typescript": "^2.1.4",
-    "tslint": "^4.2.0",
+    "tslint": "^4.3.1",
     "codelyzer": "^2.0.0-beta.4",
     
     "bootstrap": "^3.3.7",
@@ -59,7 +59,7 @@
 
     "jasmine-core": "^2.5.2",
     "jasmine-node": "^1.14.5",
-    "jasmine-spec-reporter": "^3.0.0",
+    "jasmine-spec-reporter": "^3.1.0",
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-cli": "^1.0.1",
@@ -72,7 +72,7 @@
     "remap-istanbul": "^0.8.4",
     "protractor": "^4.0.14",
     "canonical-path": "^0.0.2",
-    "webdriver-manager": "^11.1.0",
+    "webdriver-manager": "^11.1.1",
     "rimraf": "^2.5.4",
 
     "gulp": "^3.9.1",
@@ -81,22 +81,22 @@
     "gulp-inline-ng2-template": "^4.0.0",
     "gulp-rename":"^1.2.2",
     "gulp-replace": "^0.5.4",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-typescript": "^3.1.3",
-    "gulp-uglify":"2.0.0",
+    "gulp-sourcemaps": "^2.3.0",
+    "gulp-typescript": "^3.1.4",
+    "gulp-uglify":"^2.0.0",
     "html-minifier": "^3.2.3",
     "merge2": "^1.0.3",
-    "run-sequence":"1.2.2",
+    "run-sequence":"^1.2.2",
     "systemjs-builder":"^0.15.34",
 
     "@types/cachefactory": "^1.4.4",
     "@types/core-js": "^0.9.35",
     "@types/crypto-js": "^3.1.32",
     "@types/jasmine": "^2.5.40",
-    "@types/selenium-webdriver": "^2.53.38",
-    "@types/lodash": "^4.14.45",
+    "@types/selenium-webdriver": "^2.53.39",
+    "@types/lodash": "^4.14.48",
     "@types/log4javascript": "^1.4.31",
-    "@types/node": "^6.0.57",
+    "@types/node": "^6.0.59",
     "@types/quill": "^0.0.29",
     "@types/source-map": "^0.5.0"
   }
