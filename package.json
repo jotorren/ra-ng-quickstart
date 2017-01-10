@@ -1,10 +1,11 @@
 {
-  "name": "ra-ng-qs",
+  "name": "ra-ng-quickstart",
   "version": "2.0.0-rc24",
-  "description": "ra-ng project quickstart",
+  "description": "ra-ng project quickstart with SystemJS",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server -c liteserver.json",
+    "server": "http-server dist/public --cors",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "tslint": "tslint -c tslint.json src/app/**/*.ts",
@@ -16,7 +17,8 @@
   },
   "keywords": [
     "angular2",
-    "ra-ng"
+    "ra-ng",
+    "systemjs"
   ],
   "author": "ICT Analysis, Architecture & Design",
   "license": "Apache-2.0",
@@ -53,6 +55,7 @@
     "concurrently": "^3.1.0",
     "ts-node": "^2.0.0",
     "lite-server": "^2.2.2",
+    "http-server": "^0.9.0",
 
     "jasmine-core": "^2.5.2",
     "jasmine-node": "^1.14.5",
@@ -64,6 +67,7 @@
     "karma-htmlfile-reporter": "^0.3.4",
     "karma-jasmine": "^1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "remap-istanbul": "^0.8.4",
     "protractor": "^4.0.14",
@@ -93,6 +97,7 @@
     "@types/lodash": "^4.14.45",
     "@types/log4javascript": "^1.4.31",
     "@types/node": "^6.0.57",
-    "@types/quill": "^0.0.29"
+    "@types/quill": "^0.0.29",
+    "@types/source-map": "^0.5.0"
   }
 }

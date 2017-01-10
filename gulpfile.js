@@ -68,6 +68,7 @@ gulp.task('gen:assets', function() {
         gulp.src('src/assets/**/*').pipe(gulp.dest('dist/public/assets')),
         gulp.src([
             'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
             'node_modules/primeui/primeui-ng-all.min.css',
             'node_modules/quill/dist/quill.snow.css',
             'node_modules/quill/dist/quill.bubble.css'
@@ -81,7 +82,7 @@ gulp.task('gen:assets', function() {
             'node_modules/zone.js/dist/zone.min.js',
             'node_modules/reflect-metadata/Reflect.js',
             'node_modules/quill/dist/quill.min.js'
-        ]).pipe(concat('globals.js')).pipe(uglify()).pipe(gulp.dest('dist/public/assets/js')),
+        ]).pipe(concat('polyfills.js')).pipe(uglify()).pipe(gulp.dest('dist/public')),
 
         gulp.src('src/*.ico').pipe(gulp.dest('dist/public')),
         gulp.src('src/index-public.html').pipe(rename('index.html')).pipe(gulp.dest('dist/public')),
@@ -92,7 +93,7 @@ gulp.task('gen:assets', function() {
 
 gulp.task('bundle:js', function() {
     var builder = new sysBuilder('dist/src', 'dist/src/systemjs.config.js');
-    return builder.buildStatic('app', 'dist/public/assets/js/app.js', {
+    return builder.buildStatic('app', 'dist/public/app.js', {
         // externals: ['@angular/core', '@angular/common', '@angular/compiler', '@angular/platform-browser',
         //     '@angular/platform-browser-dynamic', '@angular/http', '@angular/router', '@angular/forms',
         //     'ra-ng', 'ng2-translate/ng2-translate', 'log4javascript', 'cachefactory', 'lodash',

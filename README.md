@@ -2,7 +2,7 @@
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/jotorren/ra-ng-quickstart/blob/master/LICENSE)
 
-# ra-ng Quickstart
+# ra-ng Quickstart with SystemJS
 
 This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast.
 * Best practices in file and application organization for Angular 2.
@@ -112,6 +112,7 @@ my-project/
  ├──karma.conf.js
  ├──karma-systemjs.js
  ├──karma-test-shim.js
+ ├──LICENSE
  ├──liteserver.json
  ├──package.json
  ├──protractor.config.js
@@ -177,11 +178,12 @@ dist/
      │   ├──font-awesome-4.6.3/                
      │   ├──img/                
      │   └──js/                 
-     │       ├──globals.js      * minified bundle including javascript files that we need to have globally available: polyfills, zone and reflect-metadata
-     │       └──app.js          * minified bundle that is independent of the SystemJS loader entirely. It includes the app code and its dependencies: @angular, ra-ng...
      │
+     ├──polyfills.js            * minified bundle including standard polyfills we require to run Angular applications in most modern browsers: polyfills, zone and reflect-metadata
+     ├──app.js                  * our application code and its dependencies bundled in one minified file. It is independent of the SystemJS loader entirely.
      ├──favicon.ico
-     └──index.html              * Application entry point                 
+     └──index.html              * the application entry point
+
 ```
 
 If we look at the `index.html` content:
@@ -193,7 +195,7 @@ If we look at the `index.html` content:
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1"> 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-        <title>ra-ng quickstart</title>
+        <title>ra-ng quickstart systemjs</title>
 
         <link rel="stylesheet" type="text/css" href="./assets/font-awesome-4.6.3/css/font-awesome.min.css" />
         <link rel="stylesheet" type="text/css" href="./assets/css/bootstrap.min.css" />
@@ -203,9 +205,9 @@ If we look at the `index.html` content:
         <link rel="stylesheet" type="text/css" href="./assets/css/quill.bubble.css" />
 
         <!-- 1. Load libraries -->
-        <script src="./assets/js/globals.js"></script>
+        <script src="./polyfills.js"></script>
         <!-- 2. Load the application and its dependencies -->  
-        <script src="./assets/js/app.js"></script>
+        <script src="./app.js"></script>
 	</head>
   
   <!-- 3. Display the application -->
