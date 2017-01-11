@@ -19,7 +19,7 @@ import {
         EventBusService,
         {
             provide: UserContextService, useClass: UserContextService,
-            deps: [ConfigurationService]
+            deps: [ConfigurationService, CacheService]
         },
         SpinnerService]
 })
