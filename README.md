@@ -4,7 +4,7 @@
 
 # ra-ng Quickstart with SystemJS
 
-This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript fast.
+This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript.
 * Best practices in file and application organization for Angular 2.
 * Testing Angular 2 code with Jasmine and Karma.
 * Coverage with Istanbul and Karma

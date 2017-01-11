@@ -22,15 +22,7 @@
             "showOutput": "always",
             "isBuildCommand": true,
             "isWatching": false
-        },
-        {
-            "taskName": "Test with Node.js",
-            "suppressTaskName": true,
-            "args": ["runts ${fileDirname} ${fileBasename}"],
-            "showOutput": "always",
-            "isBuildCommand": false,
-            "isWatching": false
-        },                
+        },             
         {
             "taskName": "View In Chrome",
             "suppressTaskName": true,
