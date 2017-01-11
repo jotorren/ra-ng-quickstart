@@ -48,6 +48,7 @@
     "bootstrap": "3.3.7",
     "primeui": "4.1.15",
     "quill": "1.1.9",
+    "core-js":"2.4.1",
     "reflect-metadata": "0.1.9",
     "systemjs": "0.19.41",
     "zone.js": "0.7.4",
