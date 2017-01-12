@@ -62,4 +62,7 @@
     // packages tells the System loader how to load when no filename and/or no extension
     packages: packages
   });
+
+  // 'process' will be available inside a TS file with: import * as process from 'process';
+  System.set(System.normalizeSync('process'), System.newModule({ env: { ENV: 'development' } }));
 })(this);

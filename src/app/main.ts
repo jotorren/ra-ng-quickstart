@@ -7,7 +7,15 @@ import { Config, environment } from './shared';
 import { AppModule } from './app.module';
 
 let selector = location.hostname;
+console.log(JSON.stringify({
+  logger: 'console',
+  message: 'Using configuration selector: [' + selector + ']'
+}));
 
+console.log(JSON.stringify({
+  logger: 'console',
+  message: 'Starting production environment: [' + environment.production + ']'
+}));
 if (environment.production) {
   enableProdMode();
 }
