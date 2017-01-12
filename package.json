@@ -1,6 +1,6 @@
 {
   "name": "ra-ng-quickstart",
-  "version": "2.0.0-rc24",
+  "version": "2.0.0",
   "description": "ra-ng project quickstart with SystemJS",
   "scripts": {
     "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
