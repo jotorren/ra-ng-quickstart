@@ -91,7 +91,6 @@
     "systemjs-builder":"0.15.34",
 
     "@types/cachefactory": "1.4.4",
-    "@types/core-js": "0.9.35",
     "@types/crypto-js": "3.1.32",
     "@types/jasmine": "2.5.40",
     "@types/selenium-webdriver": "2.53.39",
