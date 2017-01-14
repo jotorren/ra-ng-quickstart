@@ -23,7 +23,7 @@
   "author": "ICT Analysis, Architecture & Design",
   "license": "Apache-2.0",
   "dependencies": {
-    "ra-ng": "2.0.0",
+    "ra-ng": "2.0.3",
     "@angular/common": "2.4.3",
     "@angular/compiler": "2.4.3",
     "@angular/core": "2.4.3",
