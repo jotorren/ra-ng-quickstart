@@ -53,6 +53,7 @@ maintainable code by encapsulation of our behavior logic. A component is basical
 file or a folder with each concern as a file: style, template, specs, e2e, and component class. Here's how it looks:
 ```
 my-project/
+ ├──aot/
  ├──dist/
  ├──doc/
  ├──e2e/
@@ -98,6 +99,7 @@ my-project/
  │   │   ├──app.component.ts
  │   │   ├──app.module.ts
  │   │   ├──app.routing.module.ts
+ │   │   ├──main-aot.ts
  │   │   └──main.ts
  │   │
  │   ├──assets/
@@ -108,6 +110,7 @@ my-project/
  │   │
  |   ├──favicon.ico
  |   ├──index.html
+ |   ├──index-public.html
  |   └──systemjs.config.js
  │   
  ├──gulpfile.js
@@ -119,7 +122,9 @@ my-project/
  ├──package.json
  ├──protractor.config.js
  ├──README.md
+ ├──rollup.config-aot.js
  ├──tsconfig.json
+ ├──tsconfig-aot.json
  ├──tslint.json
  └──typings.json
  ```
@@ -208,7 +213,8 @@ If we look at the `index.html` content:
 
         <!-- 1. Load libraries -->
         <script src="./polyfills.js"></script>
-        <!-- 2. Load the application and its dependencies -->  
+        <!-- 2. Load the application and its dependencies -->
+        <script>window.module = 'aot';</script>  
         <script src="./app.js"></script>
 	</head>
   
