@@ -16,7 +16,7 @@
     "webdriver:update": "webdriver-manager update",
     "karma": "karma start karma.conf.js",
     "rollup:aot": "rollup -c rollup.config-aot.js",
-    "map:aot": "rimraf aot && npm run ngc && npm run rollup:aot && source-map-explorer dist/public/app.js"
+    "map:aot": "source-map-explorer dist/public/app.js"
   },
   "keywords": [
     "angular2",
