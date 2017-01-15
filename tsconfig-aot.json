@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "sourceMap": true,
     "declaration": false,
@@ -14,7 +14,7 @@
     "paths": {
         "app": ["app"]
     },
-    "lib": ["dom","es6"],
+    "lib": ["dom","es2015"],
     "typeRoots": ["node_modules/@types/","typings/modules"]
   },
   "include": [
@@ -25,8 +25,11 @@
     "dist",
     "aot",
     "e2e",
-    "src/environments",
-    "**/*-aot.ts"
+    "src/environments"
   ],
-  "compileOnSave": true
+  "compileOnSave": true,
+  "angularCompilerOptions": {
+   "genDir": "aot",
+   "skipMetadataEmit" : true
+ }
 }
