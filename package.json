@@ -14,7 +14,8 @@
     "test-once": "tsc && karma start karma.conf.js --single-run",
     "e2e": "protractor protractor.config.js",
     "webdriver:update": "webdriver-manager update",
-    "karma": "karma start karma.conf.js"
+    "karma": "karma start karma.conf.js",
+    "rollup:aot": "rollup -c rollup.config-aot.js"
   },
   "keywords": [
     "angular2",
@@ -93,6 +94,15 @@
     "merge2": "1.0.3",
     "run-sequence":"1.2.2",
     "systemjs-builder":"0.15.34",
+
+    "gulp-ngc":"0.1.2",
+    "rollup-stream":"1.18.0",
+    "vinyl-source-stream":"1.1.0",
+    
+    "rollup":"0.41.4",
+    "rollup-plugin-node-resolve":"2.0.0",
+    "rollup-plugin-commonjs":"7.0.0",
+    "rollup-plugin-uglify":"1.0.1",
 
     "@types/cachefactory": "1.4.4",
     "@types/crypto-js": "3.1.32",

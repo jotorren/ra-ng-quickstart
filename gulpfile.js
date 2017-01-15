@@ -12,10 +12,19 @@ var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
 var sysBuilder = require('systemjs-builder');
 
+var ngc = require('gulp-ngc');
+var rollup = require('rollup-stream');
+var source = require('vinyl-source-stream');
+
 var tsProject = ts.createProject('tsconfig.json');
+var aotProject = ngc('tsconfig-aot.json');
 
 gulp.task('default', function(callback) {
-  runSequence('environment:prod', 'compile:ts', 'clean:public', 'gen:assets', 'bundle:js', 'environment:dev', callback);
+  runSequence('clean', 'environment:prod', 'compile:ts', 'clean:public', 'gen:assets', 'bundle:js', 'environment:dev', callback);
+});
+
+gulp.task('aot', function(callback) {
+  runSequence('clean', 'environment:prod', 'compile:aot', 'clean:public', 'gen:assets', 'bundle:aot', 'environment:dev', callback);
 });
 
 gulp.task('clean:dist', function() {
@@ -26,7 +35,11 @@ gulp.task('clean:public', function() {
     return gulp.src('dist/public', { read: false }).pipe(clean());
 });
 
-gulp.task('clean', ['clean:public', 'clean:dist']);
+gulp.task('clean:aot', function() {
+    return gulp.src('aot', { read: false }).pipe(clean());
+});
+
+gulp.task('clean', ['clean:public', 'clean:dist', 'clean:aot']);
 
 gulp.task('environment:prod', function() {
 
@@ -42,9 +55,9 @@ gulp.task('environment:dev', function() {
 });
 
 // Compile TypeScript to JS
-gulp.task('compile:ts', ['clean:dist'], function() {
+gulp.task('compile:ts', function() {
 
-    return gulp.src("src/app/**/*.ts")
+    return tsProject.src()
         //.pipe(sourcemaps.init())
         .pipe(inlineNg2Template({
             base: '/src/app',
@@ -59,6 +72,10 @@ gulp.task('compile:ts', ['clean:dist'], function() {
         .pipe(tsProject())
         //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/src/app'));
+});
+
+gulp.task('compile:aot', function() {
+    return ngc('tsconfig-aot.json');
 });
 
 gulp.task('gen:assets', function() {
@@ -107,6 +124,12 @@ gulp.task('bundle:js', function() {
         .catch(function(err) {
             console.error('>>> [systemjs-builder] Bundling failed', err);
         });
+});
+
+gulp.task('bundle:aot', function() {
+  return rollup('rollup.config-aot.js')
+    .pipe(source('app.js'))
+    .pipe(gulp.dest('./dist/public'));
 });
 
 function minifyTemplate(path, ext, file, callback) {
