@@ -15,7 +15,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
 * Ready to go build system using [gulp](http://gulpjs.com/) and [SystemJS Builder](https://github.com/systemjs/builder).
 * **Ahead of Time (AoT)** compilation for rapid page loads of your production builds.
-* Tree shaking with [Rollup](http://rollupjs.org/) to automatically remove unused code from your production bundle.
+* **Tree shaking** with [Rollup](http://rollupjs.org/) to automatically remove unused code from your production bundle.
 
 ### Quick start
 ```bash
