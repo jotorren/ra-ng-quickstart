@@ -15,7 +15,8 @@
     "e2e": "protractor protractor.config.js",
     "webdriver:update": "webdriver-manager update",
     "karma": "karma start karma.conf.js",
-    "rollup:aot": "rollup -c rollup.config-aot.js"
+    "rollup:aot": "rollup -c rollup.config-aot.js",
+    "map:aot": "rimraf aot && npm run ngc && npm run rollup:aot && source-map-explorer dist/public/app.js"
   },
   "keywords": [
     "angular2",
@@ -98,11 +99,12 @@
     "gulp-ngc":"0.1.2",
     "rollup-stream":"1.18.0",
     "vinyl-source-stream":"1.1.0",
-    
+
     "rollup":"0.41.4",
     "rollup-plugin-node-resolve":"2.0.0",
     "rollup-plugin-commonjs":"7.0.0",
     "rollup-plugin-uglify":"1.0.1",
+    "source-map-explorer":"1.3.3",
 
     "@types/cachefactory": "1.4.4",
     "@types/crypto-js": "3.1.32",
