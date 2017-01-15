@@ -6,14 +6,14 @@
 
 This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript.
 * Best practices in file and application organization for Angular 2.
-* Testing Angular 2 code with Jasmine and [Karma](https://karma-runner.github.io/1.0/index.html).
-* Coverage with Istanbul and Karma
+* Testing Angular 2 code with [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/1.0/index.html).
+* Coverage with [Istanbul](https://github.com/gotwarlost/istanbul/) and Karma
 * End-to-end Angular 2 code using [Protractor](http://www.protractortest.org/).
-* Type manager with @types
+* Type manager with **@types**
 * Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
 * Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng)
-* Fully configured SystemJS module loader.
-* Ready to go build system using gulp and [SystemJS Builder](https://github.com/systemjs/builder).
+* Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
+* Ready to go build system using [gulp](http://gulpjs.com/) and [SystemJS Builder](https://github.com/systemjs/builder).
 * Ahead of Time (AoT) compilation for rapid page loads of your production builds.
 * Tree shaking with [Rollup](http://rollupjs.org/) to automatically remove unused code from your production bundle.
 
