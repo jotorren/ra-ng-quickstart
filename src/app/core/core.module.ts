@@ -5,23 +5,20 @@ import {
     EventBusService, SpinnerService
 } from 'ra-ng';
 
+export function cacheServiceFactory(cfgService: ConfigurationService, log: LogI18nService) {
+    return new CacheService(cfgService, log, 'memory', 'application');
+}
+
 @NgModule({
     imports: [],
     declarations: [],
     exports: [],
     providers: [
-        {
-            provide: CacheService,
-            useFactory: (cfgService: ConfigurationService, log: LogI18nService) =>
-                new CacheService(cfgService, log, 'memory', 'application'),
-            deps: [ConfigurationService, LogI18nService]
-        },
+        { provide: CacheService, useFactory: cacheServiceFactory, deps: [ConfigurationService, LogI18nService] },
         EventBusService,
-        {
-            provide: UserContextService, useClass: UserContextService,
-            deps: [ConfigurationService, CacheService]
-        },
-        SpinnerService]
+        { provide: UserContextService, useClass: UserContextService, deps: [ConfigurationService, CacheService] },
+        SpinnerService
+    ]
 })
 export class CoreModule {
     constructor( @Optional() @SkipSelf() parentModule: CoreModule) {

@@ -18,29 +18,37 @@ import { Config } from './shared';
 import { AppComponent } from './app.component';
 import { WelcomeComponent } from './welcome.component';
 
+export function translateLoaderFactory(cfgService: ConfigurationService) {
+    return new LanguageConfigurationService(cfgService, 'i18n_');
+}
+
+export function configurationServiceFactory() {
+    return new ConfigurationService(Config);
+}
+
+export function logServiceFactory() {
+    new LogService('app');
+}
+
+export function logI18nServiceFactory(i18n: TranslateService) {
+    if (!i18n.currentLang) {
+        i18n.use(Config.appLang);
+    }
+    return new LogI18nService('app', i18n);
+}
+
 @NgModule({
     imports: [BrowserModule, TranslateModule.forRoot({
-        provide: TranslateLoader,
-        useFactory: (cfgService: ConfigurationService) => new LanguageConfigurationService(cfgService, 'i18n_'),
-        deps: [ConfigurationService, Http]
+        provide: TranslateLoader, useFactory: translateLoaderFactory, deps: [ConfigurationService]
     }), RaNGModule, LayoutModule, AppRoutingModule, CoreModule, AppSharedModule],
     declarations: [
         AppComponent, WelcomeComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        { provide: ConfigurationService, useFactory: () => new ConfigurationService(Config) },
-        { provide: LogService, useFactory: () => new LogService('app') },
-        {
-            provide: LogI18nService,
-            useFactory: (i18n: TranslateService) => {
-                if (!i18n.currentLang) {
-                    i18n.use(Config.appLang);
-                }
-                return new LogI18nService('app', i18n);
-            },
-            deps: [TranslateService]
-        },
+        { provide: ConfigurationService, useFactory: configurationServiceFactory },
+        { provide: LogService, useFactory: logServiceFactory },
+        { provide: LogI18nService, useFactory: logI18nServiceFactory, deps: [TranslateService] },
         { provide: ErrorHandler, useClass: UncontrolledErrorsService, deps: [LogI18nService] }
     ],
     bootstrap: [AppComponent]

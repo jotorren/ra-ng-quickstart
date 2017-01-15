@@ -16,5 +16,5 @@ import { Component } from '@angular/core';
 })
 export class SidebarComponent {
   // private className = this.constructor.name;
-  private className = 'SidebarComponent';
+  className = 'SidebarComponent';
 }
