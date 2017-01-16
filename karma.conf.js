@@ -91,7 +91,7 @@ module.exports = function (config) {
     ],
 
     preprocessors: {
-      'src/**/!(*spec).js': ['coverage']
+      'src/**/!(*spec|*-aot).js': ['coverage']
     },
 
     // disabled HtmlReporter; suddenly crashing w/ strange socket error
