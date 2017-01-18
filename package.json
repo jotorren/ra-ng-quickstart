@@ -1,27 +1,29 @@
 {
   "name": "ra-ng-quickstart",
   "version": "2.0.0",
-  "description": "ra-ng project quickstart with SystemJS",
+  "description": "ra-ng project quickstart with systemjs/systemjs builder/rollup",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "rimraf dist && tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
     "lite": "lite-server -c liteserver.json",
     "server": "http-server dist/public --cors",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "ngc":"ngc -p tsconfig-aot.json",
+    "tsc:prod": "tsc -p tsconfig.prod.json",
+    "ngc":"ngc -p tsconfig.prod-aot.json",
     "tslint": "tslint -c tslint.json src/app/**/*.ts",
-    "test": "rimraf aot dist && tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
-    "test-once": "rimraf aot dist && tsc && karma start karma.conf.js --single-run",
+    "test": "rimraf dist && tsc && concurrently \"tsc -w\" \"karma start karma.conf.js\"",
+    "test-once": "rimraf dist && tsc && karma start karma.conf.js --single-run",
     "e2e": "protractor protractor.config.js",
     "webdriver:update": "webdriver-manager update",
     "karma": "karma start karma.conf.js",
     "rollup:aot": "rollup -c rollup.config-aot.js",
-    "map:aot": "source-map-explorer dist/public/app.js"
+    "rollup:aot:map": "npm run ngc && rollup -c rollup.config-aot.js && source-map-explorer dist/public/app.js"
   },
   "keywords": [
     "angular2",
     "ra-ng",
     "systemjs",
+    "builder",
     "aot",
     "rollup"
   ],

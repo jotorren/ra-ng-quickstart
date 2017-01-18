@@ -16,30 +16,19 @@ var ngc = require('gulp-ngc');
 var rollup = require('rollup-stream');
 var source = require('vinyl-source-stream');
 
-var tsProject = ts.createProject('tsconfig.json');
-var aotProject = ngc('tsconfig-aot.json');
+var tsProject = ts.createProject('tsconfig.prod.json');
 
 gulp.task('default', function(callback) {
-  runSequence('clean', 'environment:prod', 'compile:ts', 'clean:public', 'gen:assets', 'bundle:js', 'environment:dev', callback);
+  runSequence('clean:dist', 'environment:prod', 'compile:ts', 'gen:assets', 'bundle:js', 'environment:dev', callback);
 });
 
 gulp.task('aot', function(callback) {
-  runSequence('clean', 'environment:prod', 'compile:aot', 'clean:public', 'gen:assets', 'bundle:aot', 'environment:dev', callback);
+  runSequence('clean:dist', 'environment:prod', 'compile:aot', 'gen:assets', 'bundle:aot', 'environment:dev', callback);
 });
 
 gulp.task('clean:dist', function() {
-    return gulp.src('dist/src', { read: false }).pipe(clean());
+    return gulp.src('dist', { read: false }).pipe(clean());
 });
-
-gulp.task('clean:public', function() {
-    return gulp.src('dist/public', { read: false }).pipe(clean());
-});
-
-gulp.task('clean:aot', function() {
-    return gulp.src('aot', { read: false }).pipe(clean());
-});
-
-gulp.task('clean', ['clean:public', 'clean:dist', 'clean:aot']);
 
 gulp.task('environment:prod', function() {
 
@@ -75,7 +64,7 @@ gulp.task('compile:ts', function() {
 });
 
 gulp.task('compile:aot', function() {
-    return ngc('tsconfig-aot.json');
+    return ngc('tsconfig.prod-aot.json');
 });
 
 gulp.task('gen:assets', function() {

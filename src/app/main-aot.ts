@@ -4,7 +4,7 @@ import { platformBrowser } from '@angular/platform-browser';
 import { ConfigurationLoaderService, LoggerFactory, Logger } from 'ra-ng';
 
 import { Config, environment } from './shared';
-import { AppModuleNgFactory } from '../../aot/src/app/app.module.ngfactory';
+import { AppModuleNgFactory } from '../../dist/src/app/app.module.ngfactory';
 
 let selector = location.hostname;
 console.log(JSON.stringify({

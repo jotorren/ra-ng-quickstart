@@ -3,11 +3,11 @@
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "removeComments": false,
+    "removeComments": true,
     "noImplicitAny": false,
     "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
@@ -17,6 +17,7 @@
     "paths": {
         "app": ["app"]
     },
+    "outDir": "dist/src/app",
     "lib": ["dom","es6"],
     "typeRoots": ["node_modules/@types/","typings/modules"]
   },
@@ -30,6 +31,6 @@
     "src/environments",
     "**/*-aot.ts"
   ],
-  "compileOnSave": true,
+  "compileOnSave": false,
   "buildOnSave": false
 }
