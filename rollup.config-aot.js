@@ -34,7 +34,7 @@ export default {
 
         console.error('-----------');
         console.error(warn.message);
-        if (!/MISSING_EXPORT/.test(warn.code)){
+        if (!/MISSING_EXPORT/.test(warn.code) && warn.loc){
             console.error(warn.loc);
         }
     }
