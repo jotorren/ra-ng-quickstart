@@ -57,7 +57,6 @@ gulp.task('compile:ts', function() {
             templateProcessor: minifyTemplate,
             styleProcessor: minifyTemplate
         }))
-        .pipe(replace('moduleId: module.id,', ''))
         .pipe(tsProject())
         //.pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist/src/app'));
