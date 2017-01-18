@@ -2,7 +2,7 @@
 [![Angular Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
 [![Hex.pm](https://img.shields.io/hexpm/l/plug.svg)](https://github.com/jotorren/ra-ng-quickstart/blob/master/LICENSE)
 
-# ra-ng Quickstart with SystemJS
+# ra-ng Quickstart with SystemJS/SystemJS Builder(JiT)/Rollup(AoT)
 
 This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript.
 * Best practices in file and application organization for [Angular 2](https://angular.io/docs/ts/latest/guide/style-guide.html).
@@ -43,6 +43,7 @@ go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http
 * [File Structure](#file-structure)
 * [Bootstrap](#bootstrap)
 * [Building](#building)
+  * [AoT](#aot)
 * [Contributors](#contributors)
 * [Support, Questions, or Feedback](#support-questions-or-feedback)
 * [License](#license)
@@ -53,7 +54,6 @@ maintainable code by encapsulation of our behavior logic. A component is basical
 file or a folder with each concern as a file: style, template, specs, e2e, and component class. Here's how it looks:
 ```
 my-project/
- ├──aot/
  ├──dist/
  ├──doc/
  ├──e2e/
@@ -124,7 +124,8 @@ my-project/
  ├──README.md
  ├──rollup.config-aot.js
  ├──tsconfig.json
- ├──tsconfig-aot.json
+ ├──tsconfig.prod.json
+ ├──tsconfig.prod-aot.json
  ├──tslint.json
  └──typings.json
  ```
@@ -171,12 +172,28 @@ For example, if we navigate to `http://localhost:3000`, the configuration servic
 in `environments/localhost.json`, but if we go to `http://myserver:80` (suposing the application is published on
 that web server), now the configuration service will look for the `environments/myserver.json` file.
 
+Note `main.ts` depends on `app/shared/environment`. By default it contains:
+```ts
+export const environment = {
+  production: false
+};
+```
+
+But the `gulp` tasks (**default** and **aot**) change its content to:
+```ts
+export const environment = {
+  production: true
+};
+```
+
 # Building
-Default gulp task is for releasing: it does not generate source maps, **inlines** all external template/style files used by any angular component and includes minification.
+`gulp` tasks are for releasing: they do not generate source maps, **inline** all external template/style files used by any angular 
+component and include minification. Depending on the task executed (**default** or **aot**), it will generate:
 
 ```
 dist/
- ├──src/                        * folder containing all compiled javascript files
+ ├──src/                        * folder containing all compiled javascript and AoT (ngfactory, ngsummary) files
+ ├──node_modules/               * folder containing AoT json files (ngsummary) for external libraries
  └──public/
      ├──environments/           * runtime configuration json files
      ├──app/                    * i18n and static configuration json files
@@ -224,6 +241,48 @@ If we look at the `index.html` content:
   </body>   
 </html>
 ```
+
+**JiT**-compiled applications that use the `SystemJS` loader and component-relative URLs must set the `@Component.moduleId`
+property to `module.id`. **The module object is undefined when an AoT-compiled app runs**. The app fails with a null reference 
+error unless you assign a global module value in the `index.html` like this:
+
+```html
+<script>window.module = 'aot';</script>
+```
+
+As you can read in the Angular documentation ([see](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)), 
+*setting a global module is a temporary expedient*.
+
+## AoT
+
+If you are using `Moment.js` in your application and you run rollup, very likely, it will end up with the 
+error: 
+```diff
+- Cannot call a namespace ('moment')
+```
+
+To solve that problem, you need to use 
+```ts
+import moment from 'moment'
+```
+instead of
+```ts
+import * as moment from 'moment';
+```
+
+And to avoid the resulting compile error:
+```diff
+- External module ''moment'' has no default export
+```
+try changing the `node_modules/moment/moment-node.d.ts` from 
+```ts
+export = moment;
+``` 
+to 
+```ts
+export default moment;
+``` 
+This will expose any missing files. (Then change it back.)
 
 # Contributors
 
