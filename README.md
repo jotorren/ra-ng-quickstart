@@ -17,6 +17,13 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * **Ahead of Time (AoT)** compilation for rapid page loads of your production builds.
 * **Tree shaking** with [Rollup](http://rollupjs.org/) to automatically remove unused code from your production bundle.
 
+## Disadvantages
+
+* With [Rollup](http://rollupjs.org/) or with the **buildStatic** option of [SystemJS Builder](https://github.com/systemjs/builder) 
+a **ngModule** cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, If you have one static js file for the 
+whole application then it means you don't need to have lazy loading, if you need lazy loading then it means you need several 
+bundles (js files) for your app as per module.
+
 ### Quick start
 ```bash
 # clone this repo
