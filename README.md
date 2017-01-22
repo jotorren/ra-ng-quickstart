@@ -19,10 +19,9 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 
 ## Disadvantages
 
-* With [Rollup](http://rollupjs.org/) or with the **buildStatic** option of [SystemJS Builder](https://github.com/systemjs/builder) 
-a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, if you have one static js file for the 
-whole application then it means you don't need lazy loading, because it only makes sense when you have several 
-bundles (js files) for your app as per module.
+* With [Rollup](http://rollupjs.org/) a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, 
+if you have one static js file for the whole application then it means you don't need lazy loading, because it only makes 
+sense when you have several bundles (js files) for your app as per module.
 
 ### Quick start
 ```bash
