@@ -20,8 +20,8 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 ## Disadvantages
 
 * With [Rollup](http://rollupjs.org/) or with the **buildStatic** option of [SystemJS Builder](https://github.com/systemjs/builder) 
-a **ngModule** cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, If you have one static js file for the 
-whole application then it means you don't need to have lazy loading, if you need lazy loading then it means you need several 
+a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, if you have one static js file for the 
+whole application then it means you don't need lazy loading, because it only makes sense when you have several 
 bundles (js files) for your app as per module.
 
 ### Quick start
@@ -37,20 +37,19 @@ cd my-project
 # install the dependency with npm
 npm install
 
-# install typescript definitions
+# install primeNG typescript definitions
 typings install
 
 # start the server
 npm start
 ```
 
-go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http://localhost:3000) in your browser
+Go to [http://0.0.0.0:3000](http://0.0.0.0:3000) or [http://localhost:3000](http://localhost:3000) in your browser
 
 # Table of Contents
 * [File Structure](#file-structure)
 * [Bootstrap](#bootstrap)
 * [Building](#building)
-  * [AoT](#aot)
 * [Contributors](#contributors)
 * [Support, Questions, or Feedback](#support-questions-or-feedback)
 * [License](#license)
@@ -85,6 +84,12 @@ my-project/
  │   │   │   ├──topnav.component. [css | html | ts]
  │   │   │   ├──index.ts
  │   │   │   └──layout.module.ts
+ │   │   │ 
+ │   │   ├──featureA/                                 * example of lazy loaded module
+ │   │   │   ├──featureA.component.[css | html | ts]
+ │   │   │   ├──featureA.module.ts
+ │   │   │   ├──featureA.routing.module.ts
+ │   │   │   └──index.ts
  │   │   │
  │   │   ├──shared/
  │   │   │   ├──config/
@@ -107,7 +112,9 @@ my-project/
  │   │   ├──app.module.ts
  │   │   ├──app.routing.module.ts
  │   │   ├──main-aot.ts
- │   │   └──main.ts
+ │   │   ├──main.ts
+ │   │   ├──welcome.component.spec.ts                 * dummy component
+ │   │   └──welcome.component.ts
  │   │
  │   ├──assets/
  │   │   ├──css/
@@ -138,11 +145,11 @@ my-project/
  ```
 
 # Bootstrap
-Before starting the Angular 2 application, the configuration service also loads a set of properties that depend on the 
-**runtime** environment, which is identified using the **hostname**. Doing so, we can use the same artifact on different
+Before starting the Angular 2 application, the configuration service loads a set of properties that depend on the 
+**runtime** environment, which is identified using the URL's **hostname**. Doing so, we can use the same artifact on different
 environments without having to rebuild it.
 
-Keep in mind that properties read from the environment always overwrite any potential value defined in the static **Config** 
+Keep in mind that, properties read from the environment always overwrite any potential value defined in the static **Config** 
 object literal.
 
 ```ts
@@ -176,26 +183,12 @@ ConfigurationLoaderService.bootstrap(selector, Config).subscribe(
 ```
 
 For example, if we navigate to `http://localhost:3000`, the configuration service will try to load the properties set
-in `environments/localhost.json`, but if we go to `http://myserver:80` (suposing the application is published on
-that web server), now the configuration service will look for the `environments/myserver.json` file.
-
-Note `main.ts` depends on `app/shared/environment`. By default it contains:
-```ts
-export const environment = {
-  production: false
-};
-```
-
-But the `gulp` tasks (**default** and **aot**) change its content to:
-```ts
-export const environment = {
-  production: true
-};
-```
+in `environments/localhost.json`; on the other hand if we access `http://myserver:80` (supposing the application is published on
+that web server), now the configuration service will read the `environments/myserver.json` file.
 
 # Building
 `gulp` tasks are for releasing: they do not generate source maps, **inline** all external template/style files used by any angular 
-component and include minification. Depending on the task executed (**default** or **aot**), it will generate:
+component and include minification. Once the process is complete, you will get:
 
 ```
 dist/
@@ -216,6 +209,35 @@ dist/
      └──index.html              * the application entry point
 
 ```
+
+## Setting bundle's target environment
+
+Note `main.ts` depends on `app/shared/environment`. By default that class contains:
+```ts
+export const environment = {
+  production: false
+};
+```
+
+But the `gulp` tasks used to generate the bundles, change its content to:
+```ts
+export const environment = {
+  production: true
+};
+```
+
+## SystemJS and AoT compilation
+
+**JiT**-compiled applications that use the `SystemJS` loader and component-relative URLs must set the `@Component.moduleId`
+property to `module.id`. **The module object is undefined when an AoT-compiled app runs**. The app fails with a null reference 
+error unless you assign a global module value in the `index.html` like this:
+
+```html
+<script>window.module = 'aot';</script>
+```
+
+As you can read in the Angular documentation ([see](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)), 
+*setting a global module is a temporary expedient*.
 
 If we look at the `index.html` content:
 ```html
@@ -249,21 +271,9 @@ If we look at the `index.html` content:
 </html>
 ```
 
-**JiT**-compiled applications that use the `SystemJS` loader and component-relative URLs must set the `@Component.moduleId`
-property to `module.id`. **The module object is undefined when an AoT-compiled app runs**. The app fails with a null reference 
-error unless you assign a global module value in the `index.html` like this:
+## Rollup
 
-```html
-<script>window.module = 'aot';</script>
-```
-
-As you can read in the Angular documentation ([see](https://angular.io/docs/ts/latest/cookbook/aot-compiler.html)), 
-*setting a global module is a temporary expedient*.
-
-## AoT
-
-If you are using `Moment.js` in your application and you run rollup, very likely, it will end up with the 
-error: 
+If you are using `Moment.js` in your application (as this starter does) and you run `rollup`, very likely, it will end up with the error: 
 ```diff
 - Cannot call a namespace ('moment')
 ```
@@ -290,6 +300,9 @@ to
 export default moment;
 ``` 
 This will expose any missing files. (Then change it back.)
+
+**NOTE:** in this starter the `gulp aot` sequence, includes a `call:namespace` task to perform the given replace
+action before bundling. 
 
 # Contributors
 
