@@ -23,7 +23,7 @@ gulp.task('default', function(callback) {
 });
 
 gulp.task('aot', function(callback) {
-  runSequence('clean:dist', 'environment:prod', 'compile:aot', 'gen:assets', 'bundle:aot', 'environment:dev', callback);
+  runSequence('clean:dist', 'environment:prod', 'compile:aot', 'gen:assets', 'call:namespace', 'bundle:aot', 'environment:dev', callback);
 });
 
 gulp.task('clean:dist', function() {
@@ -41,6 +41,13 @@ gulp.task('environment:dev', function() {
 
     return gulp.src('src/environments/environment.ts')
         .pipe(gulp.dest('src/app/shared'));
+});
+
+gulp.task('call:namespace', function() {
+
+    return gulp.src('src/**/*.js')
+        .pipe(replace('import * as moment', 'import moment'))
+        .pipe(gulp.dest('src'));
 });
 
 // Compile TypeScript to JS
@@ -101,7 +108,7 @@ gulp.task('bundle:js', function() {
     return builder.buildStatic('app', 'dist/public/app.js', {
         // externals: ['@angular/core', '@angular/common', '@angular/compiler', '@angular/platform-browser',
         //     '@angular/platform-browser-dynamic', '@angular/http', '@angular/router', '@angular/forms',
-        //     'ra-ng', 'ng2-translate/ng2-translate', 'log4javascript', 'cachefactory', 'lodash',
+        //     'ra-ng', 'ng2-translate/ng2-translate', 'log4javascript', 'moment', 'lodash',
         //     'rxjs', 'crypto-js', 'primeng'],
         minify: true,
         sourceMaps: false

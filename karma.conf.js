@@ -59,7 +59,7 @@ module.exports = function (config) {
       // other libraries
       { pattern: 'node_modules/primeng/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/log4javascript/**/*.js', included: false, watched: false },
-      { pattern: 'node_modules/cachefactory/**/*.js', included: false, watched: false },
+      { pattern: 'node_modules/moment/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/ng2-translate/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/crypto-js/**/*.js', included: false, watched: false },
       { pattern: 'node_modules/lodash/**/*.js', included: false, watched: false },

@@ -1,7 +1,7 @@
-import rollup from 'rollup'
+import includePaths from 'rollup-plugin-includepaths';
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs';
-import uglify from 'rollup-plugin-uglify'
+import uglify from 'rollup-plugin-uglify';
 
 export default {
     entry: 'src/app/main-aot.js',
@@ -10,12 +10,19 @@ export default {
     sourceMapFile: 'dist/public/app.js.map',
     format: 'iife',
     plugins: [
+        includePaths({
+            include: {},
+            paths: ['src'],
+            external: [],
+            extensions: ['.js']
+        }),
+
         nodeResolve({ jsnext: true, module: true }),
 
         commonjs({
             include: ['node_modules/rxjs/**',
                 'node_modules/primeng/**', 'node_modules/log4javascript/**', 'node_modules/lodash/**',
-                'node_modules/crypto-js/**'],
+                'node_modules/crypto-js/**', 'node_modules/moment/**'],
 
             namedExports: {
                 'node_modules/primeng/primeng.js': ['MessagesModule', 'GrowlModule', 'PanelModule', 'DropdownModule',
