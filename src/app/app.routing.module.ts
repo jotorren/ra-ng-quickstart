@@ -7,7 +7,12 @@ import { WelcomeComponent } from './welcome.component';
     imports: [
         RouterModule.forRoot([
             { path: '', redirectTo: 'welcome', pathMatch: 'full' },
-            { path: 'welcome', component: WelcomeComponent }
+            { path: 'welcome', component: WelcomeComponent },
+
+            {
+                path: 'lazy-featureA',
+                loadChildren: 'app/featureA/featureA.module#FeatureAModule'
+            }
         ])
     ],
     exports: [
@@ -18,6 +23,7 @@ import { WelcomeComponent } from './welcome.component';
 })
 export class AppRoutingModule {
     static RoutesMap = {
-        welcome:    'welcome',
+        welcome: 'welcome',
+        featureA: '/lazy-featureA'
     };
 }

@@ -8,8 +8,10 @@
         "log.cache.expired.entry": "[{{class}}] Cache entry expired: {{key}} / {{value}}",
 
 		"log.app.init.cache": "[{{class}}] Using cache: {{name}}",
-				
+		
+        "ui.any.back":"Back",
         "ui.language.selector.label": "Choose language:",
-        "ui.main.message": "Main content area"
+        "ui.main.message": "Main content area",
+        "ui.featureA.description": "Lazy loaded module"
     }
 }

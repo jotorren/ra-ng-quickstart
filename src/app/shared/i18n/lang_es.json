@@ -9,7 +9,9 @@
 
         "log.app.init.cache": "[{{class}}] Usando cache: {{name}}",
 		
+        "ui.any.back":"Volver",
         "ui.language.selector.label": "Seleccione idioma:",
-        "ui.main.message": "Zona principal de contenido"
+        "ui.main.message": "Zona principal de contenido",
+        "ui.featureA.description": "Módulo cargado en modo lazy"
     }
 }
