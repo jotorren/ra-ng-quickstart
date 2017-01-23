@@ -2,14 +2,19 @@ import includePaths from 'rollup-plugin-includepaths';
 import nodeResolve from 'rollup-plugin-node-resolve'
 import commonjs from 'rollup-plugin-commonjs';
 import uglify from 'rollup-plugin-uglify';
+import progress from 'rollup-plugin-progress';
 
 export default {
     entry: 'src/app/main-aot.js',
-    dest: 'dist/public/app.js', // output a single application bundle
+    dest: 'dist/public/app.js',
     sourceMap: true,
     sourceMapFile: 'dist/public/app.js.map',
     format: 'iife',
     plugins: [
+        progress({
+            clearLine: true
+        }),
+
         includePaths({
             include: {},
             paths: ['src'],
