@@ -186,7 +186,14 @@ in `environments/localhost.json`; on the other hand if we access `http://myserve
 that web server), now the configuration service will read the `environments/myserver.json` file.
 
 # Building
-`gulp` tasks are for releasing: they do not generate source maps, **inline** all external template/style files used by any angular 
+You can generate the production bundles by means of:
+
+```
+gulp                            * JiT compilation
+gulp aot                        * AoT compilation
+```
+
+Both `gulp` tasks are for releasing: they do not generate source maps, **inline** all external template/style files used by any angular 
 component and include minification. Once the process is complete, you will get:
 
 ```
@@ -218,7 +225,7 @@ export const environment = {
 };
 ```
 
-But the `gulp` tasks used to generate the bundles, change its content to:
+But the `gulp` tasks used to build the bundles, change its content to:
 ```ts
 export const environment = {
   production: true
