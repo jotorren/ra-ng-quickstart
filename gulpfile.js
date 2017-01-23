@@ -6,24 +6,36 @@ var inlineNg2Template = require('gulp-inline-ng2-template');
 var merge = require('merge2');
 var rename = require('gulp-rename');
 var replace = require('gulp-replace');
+var rev = require("gulp-rev");
+var revReplace = require("gulp-rev-replace");
+var revdel = require('gulp-rev-delete-original');
 var runSequence = require('run-sequence');
 // var sourcemaps = require('gulp-sourcemaps');
 var ts = require('gulp-typescript');
 var uglify = require('gulp-uglify');
+var gzip = require('gulp-gzip');
 var sysBuilder = require('systemjs-builder');
 
 var ngc = require('gulp-ngc');
-var rollup = require('rollup-stream');
-var source = require('vinyl-source-stream');
+var Q = require('q');
+var rollup = require( 'rollup' );
 
 var tsProject = ts.createProject('tsconfig.prod.json');
 
 gulp.task('default', function(callback) {
-  runSequence('clean:dist', 'environment:prod', 'compile:ts', 'gen:assets', 'bundle:js', 'environment:dev', callback);
+  runSequence(
+      'clean:dist', 
+      'environment:prod', 'compile:ts', 'environment:dev', 
+      'gen:assets', 
+      'bundle:js', 'cache:bust', 'bundle:zip', callback);
 });
 
 gulp.task('aot', function(callback) {
-  runSequence('clean:dist', 'environment:prod', 'compile:aot', 'gen:assets', 'call:namespace', 'bundle:aot', 'environment:dev', callback);
+  runSequence(
+      'clean:dist', 
+      'environment:prod', 'compile:aot', 'environment:dev', 
+      'gen:assets', 'call:namespace', 
+      'bundle:aot', 'cache:bust', 'bundle:zip', callback);
 });
 
 gulp.task('clean:dist', function() {
@@ -83,8 +95,8 @@ gulp.task('gen:assets', function() {
             'node_modules/bootstrap/dist/css/bootstrap.min.css.map',
             'node_modules/primeui/primeui-ng-all.min.css',
             'node_modules/quill/dist/quill.snow.css',
-            'node_modules/quill/dist/quill.bubble.css'
-        ]).pipe(gulp.dest('dist/public/assets/css')),
+            'node_modules/quill/dist/quill.bubble.css'])
+            .pipe(gulp.dest('dist/public/assets/css')),
 
         gulp.src('node_modules/primeui/themes/redmond/theme.css')
             .pipe(rename('primeui-redmond-theme.css')).pipe(gulp.dest('dist/public/assets/css')),
@@ -93,8 +105,10 @@ gulp.task('gen:assets', function() {
             'node_modules/core-js/client/shim.min.js',
             'node_modules/zone.js/dist/zone.min.js',
             'node_modules/reflect-metadata/Reflect.js',
-            'node_modules/quill/dist/quill.min.js'
-        ]).pipe(concat('polyfills.js')).pipe(uglify()).pipe(gulp.dest('dist/public')),
+            'node_modules/quill/dist/quill.min.js'])
+            .pipe(concat('polyfills.js'))
+            .pipe(uglify())
+            .pipe(gulp.dest('dist/public')),
 
         gulp.src('src/*.ico').pipe(gulp.dest('dist/public')),
         gulp.src('src/index-public.html').pipe(rename('index.html')).pipe(gulp.dest('dist/public')),
@@ -111,6 +125,9 @@ gulp.task('bundle:js', function() {
         //     'ra-ng', 'ng2-translate/ng2-translate', 'log4javascript', 'moment', 'lodash',
         //     'rxjs', 'crypto-js', 'primeng'],
         minify: true,
+        // sourceMaps, Either boolean value (enable/disable) or string value 'inline' which will inline the 
+        // SourceMap data as Base64 data URI right in the generated output file (never use in production). 
+        // (Default is false)
         sourceMaps: false
     })
         .then(function() {
@@ -122,9 +139,43 @@ gulp.task('bundle:js', function() {
 });
 
 gulp.task('bundle:aot', function() {
-  return rollup('rollup.config-aot.js')
-    .pipe(source('app.js'))
-    .pipe(gulp.dest('./dist/public'));
+    var deferred = Q.defer();
+    var config = require( './rollup.config-aot.es5.js' );
+    rollup.rollup(config).then( function ( bundle ) {
+
+        bundle.write({
+            dest: 'dist/public/app.js',
+            sourceMap: false,
+            format: 'iife'
+        });
+
+        deferred.resolve();
+    });
+
+    return deferred.promise;
+});
+
+gulp.task('bundle:hash', function(){
+  return gulp.src(['dist/public/polyfills.js', 'dist/public/app.js'])
+    .pipe(rev())
+    .pipe(revdel())
+    .pipe(gulp.dest('dist/public'))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest('dist/public'))
+})
+
+gulp.task('cache:bust', ['bundle:hash'], function(){
+  var manifest = gulp.src('dist/public/rev-manifest.json');
+ 
+  return gulp.src('dist/public/index.html')
+    .pipe(revReplace({manifest: manifest}))
+    .pipe(gulp.dest('dist/public'));
+});
+
+gulp.task('bundle:zip', function() {
+    return gulp.src(['dist/public/polyfills*.js', 'dist/public/app*.js'])
+        .pipe(gzip({ gzipOptions: { level: 9 } }))
+        .pipe(gulp.dest('dist/public'));
 });
 
 function minifyTemplate(path, ext, file, callback) {
