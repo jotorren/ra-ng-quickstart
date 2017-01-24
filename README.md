@@ -12,14 +12,74 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * Type manager with **@types**
 * Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
 * Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng)
+* Example of **lazy loaded module**. Keep in mind that once the bundling process is complete, the resulting bundle contains those modules.
+This means they are loaded when the browser reads the file and therefore they can not longer be considered 'lazy'.
 * Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
-* Ready to go build system using [gulp](http://gulpjs.com/) and [SystemJS Builder](https://github.com/systemjs/builder).
+* `TypeScript` compiler target set to `ES5`. Read **John Papa's** [article](https://johnpapa.net/es5-es2015-typescript/) for further information.
 * **Ahead of Time (AoT)** compilation for rapid page loads of your production builds.
-* **Tree shaking** with [Rollup](http://rollupjs.org/) to automatically remove unused code from your production bundle.
+* Ready to go build system using [gulp](http://gulpjs.com/), [SystemJS Builder](https://github.com/systemjs/builder) for **JiT**
+compilation and [Rollup](http://rollupjs.org/) for **AoT**.
+* **Tree shaking** (only with [Rollup](http://rollupjs.org/)) to automatically remove unused code from your production bundle.
+Here, it's important to use the target `ES5` together with the module-format `ES2015` because 
+[Rollup](http://rollupjs.org/) **can only Tree Shake ES2015 modules** which have `import` and `export` statements.
+It's not important that the code itself be written with `ES2015` syntax such as `class` and `const`. What matters is 
+that the code uses ES `import` and `export` statements rather than `require` statements.
+* **Cache busting” system** through a content hash that suggests to the browser that, when you made a change in your static 
+asset, that new file is actually different and should not be retrieved from the cache, but freshly downloaded. This is 
+accomplished by means of [gulp-rev](https://github.com/sindresorhus/gulp-rev) 
+* Build-time **gzip** bundles using [gulp-gzip](https://github.com/jstuckey/gulp-gzip).
 
-## Disadvantages
+## Limitations
 
-* With [Rollup](http://rollupjs.org/) a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, 
+* Although [SystemJS Builder](https://github.com/systemjs/builder) is able to process modules in `ES2015` format, the only 
+way to bundle **Angular lazy modules/routes** requires:
+  * Modules in `CommonJS` format.
+  * Routes defined using the `Angular` API
+
+  ```ts
+  import { NgModule } from '@angular/core';
+  import { RouterModule } from '@angular/router';
+
+  import { WelcomeComponent } from './welcome.component';
+  import { FeatureAModule } from 'app/featureA/featureA.module';
+
+  export function featureAFactory() {
+      return FeatureAModule;
+  }
+
+  @NgModule({
+      imports: [
+          RouterModule.forRoot([
+              { path: '', redirectTo: 'welcome', pathMatch: 'full' },
+              { path: 'welcome', component: WelcomeComponent },
+
+              { path: 'lazy-featureA', loadChildren: featureAFactory }
+
+              // Fails with AoT compiling:
+              // { path: 'lazy-featureA', loadChildren: () => FeatureAModule }
+
+              // SystenJS Builder is unable to process
+              // {
+              //     path: 'lazy-featureA',
+              //     loadChildren: 'app/featureA/featureA.module#FeatureAModule'
+              // }
+          ])
+      ],
+      exports: [
+          RouterModule
+      ],
+      providers: [
+      ]
+  })
+  export class AppRoutingModule {
+      static RoutesMap = {
+          welcome: 'welcome',
+          featureA: '/lazy-featureA'
+      };
+  }
+  ``` 
+
+* However, with [Rollup](http://rollupjs.org/) a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, 
 if you have one static js file for the whole application then it means you don't need lazy loading, because it only makes 
 sense when you have several bundles (js files) for your app as per module.
 
@@ -209,8 +269,10 @@ dist/
      │   ├──img/                
      │   └──js/                 
      │
-     ├──polyfills.js            * minified bundle including standard polyfills we require to run Angular applications in most modern browsers: polyfills, zone and reflect-metadata
-     ├──app.js                  * our application code and its dependencies bundled in one minified file. It is independent of the SystemJS loader entirely.
+     ├──polyfills-[hash].js     * minified bundle including standard polyfills we require to run Angular applications in most modern browsers: polyfills, zone and reflect-metadata
+     ├──polyfills-[hash].js.gz  * compressed version of polyfills-[hash].js
+     ├──app-[hash].js           * our application code and its dependencies bundled in one minified file. It is independent of the SystemJS loader entirely.
+     ├──app-[hash].js.gz        * compressed version of app-[hash].js
      ├──favicon.ico
      └──index.html              * the application entry point
 
