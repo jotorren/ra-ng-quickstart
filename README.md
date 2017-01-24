@@ -7,12 +7,12 @@
 This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript.
 * Best practices in file and application organization for [Angular 2](https://angular.io/docs/ts/latest/guide/style-guide.html).
 * Testing Angular 2 code with [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/1.0/index.html).
-* **Coverage** with [Istanbul](https://github.com/gotwarlost/istanbul/) and [Karma](https://karma-runner.github.io/1.0/index.html)
+* **Coverage** with [Istanbul](https://github.com/gotwarlost/istanbul/) and [Karma](https://karma-runner.github.io/1.0/index.html).
 * End-to-end Angular 2 code using [Protractor](http://www.protractortest.org/).
-* Type manager with **@types**
-* Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
-* Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng)
-* Example of **lazy loaded module**. Keep in mind that once the bundling process is complete, the resulting bundle contains any 'lazy' module.
+* Type manager with **@types**.
+* Rich UI design with [primeNG](http://www.primefaces.org/primeng/).
+* Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng).
+* Example of **lazy loaded module**. Keep in mind that, once the bundling process is complete, the resulting bundle contains any 'lazy' module.
 This means they are loaded when the browser reads the file and therefore they can not longer be considered 'lazy'.
 * Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
 * `TypeScript` compiler target set to `ES5`. Read [John Papa's article](https://johnpapa.net/es5-es2015-typescript/) for further information.
@@ -26,7 +26,7 @@ It's not important that the code itself be written with `ES2015` syntax such as 
 that the code uses ES `import` and `export` statements rather than `require` statements.
 * **Cache busting” system** through a content hash that suggests to the browser that, when you made a change in your static 
 asset, that new file is actually different and should not be retrieved from the cache, but freshly downloaded. This is 
-accomplished by means of [gulp-rev](https://github.com/sindresorhus/gulp-rev) 
+achieved by means of [gulp-rev](https://github.com/sindresorhus/gulp-rev).
 * Build-time **gzip** bundles using [gulp-gzip](https://github.com/jstuckey/gulp-gzip).
 
 ## Limitations
@@ -172,8 +172,8 @@ my-project/
  │   │   ├──app.routing.module.ts
  │   │   ├──main-aot.ts
  │   │   ├──main.ts
- │   │   ├──welcome.component.spec.ts                 * dummy component
- │   │   └──welcome.component.ts
+ │   │   ├──welcome.component.spec.ts
+ │   │   └──welcome.component.ts                      * dummy component
  │   │
  │   ├──assets/
  │   │   ├──css/
@@ -196,6 +196,7 @@ my-project/
  ├──protractor.config.js
  ├──README.md
  ├──rollup.config-aot.js
+ ├──rollup.config-aot.es5.js
  ├──tsconfig.json
  ├──tsconfig.prod.json
  ├──tsconfig.prod-aot.json
