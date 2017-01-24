@@ -18,7 +18,8 @@ This means they are loaded when the browser reads the file and therefore they ca
 * `TypeScript` compiler target set to `ES5`. Read [John Papa's article](https://johnpapa.net/es5-es2015-typescript/) for further information.
 * **Ahead of Time (AoT)** compilation for rapid page loads of your production builds.
 * Ready to go build system using [gulp](http://gulpjs.com/), [SystemJS Builder](https://github.com/systemjs/builder) for **JiT**
-compilation and [Rollup](http://rollupjs.org/) for **AoT**.
+compilation and [Rollup](http://rollupjs.org/) for **AoT**. [gulp](http://gulpjs.com/) and [Rollup](http://rollupjs.org/) integration
+is solved through the [Rollup](http://rollupjs.org/) Javascript API (`rollup.config-aot.es5.js`).
 * **Tree shaking** (only with [Rollup](http://rollupjs.org/)) to automatically remove unused code from your production bundle.
 Here, it's important to use the target `ES5` together with the module-format `ES2015` because 
 [Rollup](http://rollupjs.org/) **can only Tree Shake ES2015 modules** which have `import` and `export` statements.
@@ -276,7 +277,6 @@ dist/
      ├──app-[hash].js.gz        * compressed version of app-[hash].js
      ├──favicon.ico
      └──index.html              * the application entry point
-
 ```
 
 ## Setting bundle's target environment
@@ -342,7 +342,7 @@ If we look at the `index.html` content:
 
 ## Rollup
 
-If you are using `Moment.js` in your application (as this starter does) and you run `rollup`, very likely, it will end up with the error: 
+If you are using `Moment.js` in your application (as this starter does) and you run [Rollup](http://rollupjs.org/), very likely, it will end up with the error: 
 ```diff
 - Cannot call a namespace ('moment')
 ```
