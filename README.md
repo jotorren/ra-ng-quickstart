@@ -12,7 +12,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * Type manager with **@types**
 * Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
 * Recommended design patterns and advanced Angular 2 components with [raNG](https://github.com/jotorren/ra-ng)
-* Example of **lazy loaded module**. Keep in mind that once the bundling process is complete, the resulting bundle contains those modules.
+* Example of **lazy loaded module**. Keep in mind that once the bundling process is complete, the resulting bundle contains any 'lazy' module.
 This means they are loaded when the browser reads the file and therefore they can not longer be considered 'lazy'.
 * Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
 * `TypeScript` compiler target set to `ES5`. Read [John Papa's article](https://johnpapa.net/es5-es2015-typescript/) for further information.
