@@ -7,7 +7,7 @@
 This seed repo serves as an Angular 2 starter for anyone looking to get up and running with Angular 2 and TypeScript.
 * Best practices in file and application organization for [Angular 2](https://angular.io/docs/ts/latest/guide/style-guide.html).
 * Testing Angular 2 code with [Jasmine](https://jasmine.github.io/) and [Karma](https://karma-runner.github.io/1.0/index.html).
-* **Coverage** with [Istanbul](https://github.com/gotwarlost/istanbul/) and Karma
+* **Coverage** with [Istanbul](https://github.com/gotwarlost/istanbul/) and [Karma](https://karma-runner.github.io/1.0/index.html)
 * End-to-end Angular 2 code using [Protractor](http://www.protractortest.org/).
 * Type manager with **@types**
 * Rich UI design with [primeNG](http://www.primefaces.org/primeng/)
@@ -15,7 +15,7 @@ This seed repo serves as an Angular 2 starter for anyone looking to get up and r
 * Example of **lazy loaded module**. Keep in mind that once the bundling process is complete, the resulting bundle contains those modules.
 This means they are loaded when the browser reads the file and therefore they can not longer be considered 'lazy'.
 * Fully configured [SystemJS](https://github.com/systemjs/systemjs/) module loader.
-* `TypeScript` compiler target set to `ES5`. Read **John Papa's** [article](https://johnpapa.net/es5-es2015-typescript/) for further information.
+* `TypeScript` compiler target set to `ES5`. Read [John Papa's article](https://johnpapa.net/es5-es2015-typescript/) for further information.
 * **Ahead of Time (AoT)** compilation for rapid page loads of your production builds.
 * Ready to go build system using [gulp](http://gulpjs.com/), [SystemJS Builder](https://github.com/systemjs/builder) for **JiT**
 compilation and [Rollup](http://rollupjs.org/) for **AoT**.
@@ -32,9 +32,9 @@ accomplished by means of [gulp-rev](https://github.com/sindresorhus/gulp-rev)
 ## Limitations
 
 * Although [SystemJS Builder](https://github.com/systemjs/builder) is able to process modules in `ES2015` format, the only 
-way to bundle **Angular lazy modules/routes** requires:
+way to bundle **lazy modules/routes** requires:
   * Modules in `CommonJS` format.
-  * Routes defined using the `Angular` API
+  * Routes defined using the Angular API
 
   ```ts
   import { NgModule } from '@angular/core';
@@ -79,7 +79,7 @@ way to bundle **Angular lazy modules/routes** requires:
   }
   ``` 
 
-* However, with [Rollup](http://rollupjs.org/) a module cannot be lazy loaded: **Angular lazy routing is not supported**. Anyway, 
+* However, with [Rollup](http://rollupjs.org/) a module cannot be lazy loaded: **Angular 2 lazy routing is not supported**. Anyway, 
 if you have one static js file for the whole application then it means you don't need lazy loading, because it only makes 
 sense when you have several bundles (js files) for your app as per module.
 
