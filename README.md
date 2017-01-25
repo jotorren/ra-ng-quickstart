@@ -29,6 +29,9 @@ that the code uses ES `import` and `export` statements rather than `require` sta
 asset, that new file is actually different and should not be retrieved from the cache, but freshly downloaded. This is 
 achieved by means of [gulp-rev](https://github.com/sindresorhus/gulp-rev).
 * Build-time **gzip** bundles using [gulp-gzip](https://github.com/jstuckey/gulp-gzip).
+* Inspection of the bundles with [source-map-explorer](https://github.com/danvk/source-map-explorer). 
+It analyzes the source map generated with the bundle and draws a map of all dependencies, showing exactly which application 
+and Angular modules and classes are included in the bundle.
 
 ## Limitations
 
