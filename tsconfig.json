@@ -21,12 +21,12 @@
     "typeRoots": ["node_modules/@types/","typings/modules"]
   },
   "include": [
-    "src/**/*.ts"
+    "src/**/*.ts",
+    "e2e/**/*.ts"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "e2e",
     "src/environments",
     "**/*-aot.ts"
   ],
